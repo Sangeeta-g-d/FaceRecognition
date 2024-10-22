@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="main-panel">
+    <div class="content-wrapper">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-8 col-lg-6 grid-margin">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title text-center">Add student details</h4>
+                     
+                        <div class="d-flex justify-content-center">
+                            <form method="post">
+                                {% csrf_token %}
+                                {{ form.non_field_errors }}
+                                <div class="form-group">
+                                    {{ form.id.label_tag }}
+                                    <div class="col">
+                                        {{ form.id }}
+                                        {% if form.id.errors %}
+                                            <p style="color: red;">{{ form.id.errors }}</p>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    {{ form.name.label_tag }}
+                                    <div class="col">
+                                        {{ form.name }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    {{ form.age.label_tag }}
+                                    <div class="col">
+                                        {{ form.age }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    {{ form.gender.label_tag }}
+                                    <div class="col">
+                                        {{ form.gender }}
+                                    </div>
+                                </div>
+                                <button class="btn btn-primary btn-block" type="submit">Add</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% if success %}
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                Swal.fire({
+                    title: 'Success!',
+                    text: 'Student has been added successfully.',
+                    icon: 'success',
+                    confirmButtonText: 'OK'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = "{% url 'view_students' %}";
+                    }
+                });
+            });
+        </script>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

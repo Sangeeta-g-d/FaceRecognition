@@ -1,0 +1,56 @@
+<!-- recognition/templates/detect.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Detect Faces</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 60vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        h1 {
+            margin-bottom: 20px; /* Adjust the value to increase/decrease space */
+        }
+
+        .spacer {
+            margin-bottom: 50px; /* Adjust the value to increase/decrease space */
+        }
+        form, .button-container {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+        }
+        button {
+            background-color: navy;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            margin: 5px;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: darkblue;
+        }
+    </style>
+</head>
+<body>
+    <h1>Face Detection</h1>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Start Detection</button>
+    </form>
+    <div class="spacer"></div>
+    <h2>Go to Admin Dashboard</h2>
+    <form method="post">
+        {% csrf_token %}
+        <a href="/admin_db"><button type="button">Admin Dashboard</button></a>
+    </form>
+</body>
+</html>
